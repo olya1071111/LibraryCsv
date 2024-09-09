@@ -1,4 +1,4 @@
-package com.itexus.model.dao;
+package com.itexus.dao;
 
 import com.itexus.model.Book;
 
