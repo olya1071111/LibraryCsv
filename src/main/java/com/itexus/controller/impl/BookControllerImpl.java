@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @Component
 public class BookControllerImpl implements BookController {
@@ -22,65 +24,68 @@ public class BookControllerImpl implements BookController {
         this.bookLogic = bookLogic;
     }
 
-    private void startMenu() {
-        System.out.println("\nMAIN MENU:");
-        System.out.println("If you need to add a book, press - 1");
-        System.out.println("If you need to see all books, press - 2");
-        System.out.println("if you need to delete the book press - 3");
-        System.out.println("If you need to change book settings, press - 4");
-        System.out.println("If you want to exit press 'E' .");
-        System.out.print("Make a choice ---> ");
+    private void startMenu(ResourceBundle rb) {
+        System.out.println(rb.getString("menu"));
+        System.out.println(rb.getString("choice1"));
+        System.out.println(rb.getString("choice2"));
+        System.out.println(rb.getString("choice3"));
+        System.out.println(rb.getString("choice4"));
+        System.out.println(rb.getString("choice5"));
+        System.out.print(rb.getString("make_choice"));
     }
 
     public void doAction() throws IOException {
+
+        Locale locale = new Locale("en");
+        ResourceBundle rb = ResourceBundle.getBundle("text",locale);
 
         boolean endWorking = false;
         int id;
         BufferedReader InputNumber = new BufferedReader(new InputStreamReader(System.in));
 
         while (!endWorking) {
-            startMenu();
+            startMenu(rb);
             String nStr = InputNumber.readLine();
             if (nStr.equals("1")) {
                 try {
                     bookLogic.saveBook(MenuForAddOrUpdateUser.DataForAddOrUpdateUser());
-                    System.out.println("New book add successfully");
+                    System.out.println(rb.getString("add_book"));
                 } catch (LogicException e) {
-                    System.out.println("!!! Error adding new book !!!");
+                    System.out.println(rb.getString("err_add"));
                 }
                 System.out.println(delimiter);
                 continue;
             }
             if (nStr.equals("2")) {
-                System.out.println("\nList of all books:");
+                System.out.println(rb.getString("all_books"));
                 try {
                     bookLogic.getAll().forEach(System.out::println);
                 } catch (LogicException e) {
-                    throw new RuntimeException(e + "execution error!");
+                    throw new RuntimeException(e + rb.getString("err_all"));
                 }
                 System.out.println(delimiter);
                 continue;
             }
             if (nStr.equals("3")) {
-                System.out.print("\nEnter the Id of the user you want to delete --> ");
+                System.out.print(rb.getString("id_del"));
                 try {
                     id = Integer.parseInt(InputNumber.readLine());
                     bookLogic.deleteBook(id);
-                    System.out.println("The book with Id = " + id + " was deleted successfully");
+                    System.out.println(rb.getString("del_book1") + id + rb.getString("del_book2"));
                 } catch (LogicException e) {
-                    System.out.println("!!! The book was not been deleted! invalid Id number entered !!!");
+                    System.out.println(rb.getString("err_del"));
                 }
                 System.out.println(delimiter);
                 continue;
             }
             if (nStr.equals("4")) {
-                System.out.print("\nEnter the Id of the user you want to update --> ");
+                System.out.print(rb.getString("id_up"));
                 try {
                     id = Integer.parseInt(InputNumber.readLine());
                     bookLogic.editBook(MenuForAddOrUpdateUser.DataForAddOrUpdateUser(), id);
-                    System.out.println("The book update successfully");
+                    System.out.println(rb.getString("up_book"));
                 } catch (LogicException e) {
-                    System.out.println("!!! The book was not been update !!!");
+                    System.out.println(rb.getString("err_up"));
                 }
                 System.out.println(delimiter);
                 continue;
