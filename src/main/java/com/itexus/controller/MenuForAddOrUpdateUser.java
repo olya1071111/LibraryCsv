@@ -6,20 +6,22 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
 public class MenuForAddOrUpdateUser {
+
     private MenuForAddOrUpdateUser() {
     }
 
-    public static Book DataForAddOrUpdateUser() {
+    public static Book DataForAddOrUpdateUser(ResourceBundle rb) {
 
         Book book = new Book();
 
         BufferedReader numIn = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("\nEnter the title book (Ex.: Biology) --> ");
+        System.out.print(rb.getString("title_book"));
 
         boolean isCorrectTitle = false;
         while (!isCorrectTitle) {
@@ -35,11 +37,11 @@ public class MenuForAddOrUpdateUser {
                 book.setTitle(title);
                 isCorrectTitle = true;
             } else {
-                System.out.println("\n The title must consist of letters, and begin with a capital letter.Try again.");
+                System.out.println(rb.getString("err_title"));
             }
         }
 
-        System.out.print("Enter the name of author (Ex.Ivanov I.I.) --> ");
+        System.out.print(rb.getString("author"));
         boolean isCorrectNameOfAuthor = false;
         while (!isCorrectNameOfAuthor) {
             String nameOfAuthor;
@@ -54,11 +56,11 @@ public class MenuForAddOrUpdateUser {
                 book.setAuthor(nameOfAuthor);
                 isCorrectNameOfAuthor = true;
             } else {
-                System.out.println("\n Name of author must consist of letters, and begin with a capital letter.Try again.");
+                System.out.println(rb.getString("err_author"));
             }
         }
 
-        System.out.print("Enter description of book --> ");
+        System.out.print(rb.getString("description"));
         try {
             book.setDescription(numIn.readLine());
         } catch (IOException e) {

@@ -48,7 +48,7 @@ public class BookControllerImpl implements BookController {
             String nStr = InputNumber.readLine();
             if (nStr.equals("1")) {
                 try {
-                    bookLogic.saveBook(MenuForAddOrUpdateUser.DataForAddOrUpdateUser());
+                    bookLogic.saveBook(MenuForAddOrUpdateUser.DataForAddOrUpdateUser(rb));
                     System.out.println(rb.getString("add_book"));
                 } catch (LogicException e) {
                     System.out.println(rb.getString("err_add"));
@@ -82,7 +82,7 @@ public class BookControllerImpl implements BookController {
                 System.out.print(rb.getString("id_up"));
                 try {
                     id = Integer.parseInt(InputNumber.readLine());
-                    bookLogic.editBook(MenuForAddOrUpdateUser.DataForAddOrUpdateUser(), id);
+                    bookLogic.editBook(MenuForAddOrUpdateUser.DataForAddOrUpdateUser(rb), id);
                     System.out.println(rb.getString("up_book"));
                 } catch (LogicException e) {
                     System.out.println(rb.getString("err_up"));
@@ -93,7 +93,7 @@ public class BookControllerImpl implements BookController {
             if (nStr.equals("E")) {
                 endWorking = true;
             } else {
-                System.out.println("Enter the correct number: 1,2,3,4 or E");
+                System.out.println(rb.getString("enter"));
                 System.out.println();
             }
         }
