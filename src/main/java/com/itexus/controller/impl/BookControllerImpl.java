@@ -36,16 +36,28 @@ public class BookControllerImpl implements BookController {
 
     public void doAction() throws IOException {
 
-        Locale locale = new Locale("ru");
-        ResourceBundle rb = ResourceBundle.getBundle("text",locale);
+        Locale locale = new Locale("en");
+        ResourceBundle rb = ResourceBundle.getBundle("text", locale);
+        BufferedReader InputNumber = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println(rb.getString("select"));
+        System.out.println(rb.getString("rus"));
+        System.out.println(rb.getString("en"));
+        System.out.print(rb.getString("make_choice"));
+
+        String nStr = InputNumber.readLine();
+
+        if (nStr.equals("1")) {
+            locale = new Locale("ru");
+        }
+        rb = ResourceBundle.getBundle("text", locale);
 
         boolean endWorking = false;
         int id;
-        BufferedReader InputNumber = new BufferedReader(new InputStreamReader(System.in));
 
         while (!endWorking) {
             startMenu(rb);
-            String nStr = InputNumber.readLine();
+            nStr = InputNumber.readLine();
             if (nStr.equals("1")) {
                 try {
                     bookLogic.saveBook(MenuForAddOrUpdateUser.DataForAddOrUpdateUser(rb));
