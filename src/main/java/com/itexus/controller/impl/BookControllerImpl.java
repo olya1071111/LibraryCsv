@@ -36,7 +36,7 @@ public class BookControllerImpl implements BookController {
 
     public void doAction() throws IOException {
 
-        Locale locale = new Locale("en");
+        Locale locale = new Locale("ru");
         ResourceBundle rb = ResourceBundle.getBundle("text",locale);
 
         boolean endWorking = false;
