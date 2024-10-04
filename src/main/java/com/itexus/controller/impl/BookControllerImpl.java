@@ -83,7 +83,7 @@ public class BookControllerImpl implements BookController {
                 try {
                     id = Integer.parseInt(InputNumber.readLine());
                     bookLogic.deleteBook(id);
-                    System.out.println(rb.getString("del_book1") + id + rb.getString("del_book2"));
+                    System.out.println(rb.getString("del_book1") + id + " " + rb.getString("del_book2"));
                 } catch (LogicException e) {
                     System.out.println(rb.getString("err_del"));
                 }
