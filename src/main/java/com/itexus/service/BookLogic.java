@@ -13,5 +13,6 @@ public interface BookLogic {
 
     void deleteBook(Integer id) throws LogicException;
 
+    Book findByName(String title) throws LogicException;
 
 }

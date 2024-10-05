@@ -98,4 +98,19 @@ public class BookLogicImpl implements BookLogic {
             throw new LogicException(e);
         }
     }
+
+    @Override
+    public Book findByName(String title) throws LogicException {
+        try {
+            List<Book> books = bookDao.listBooks();
+
+            return books.stream()
+                    .filter(p -> p.getTitle().equals(title))
+                    .findFirst()
+                    .orElse(null);
+
+        } catch (DaoException e) {
+            throw new LogicException(e);
+        }
+    }
 }

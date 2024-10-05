@@ -20,7 +20,8 @@ import java.util.List;
 @Component
 public class BookDaoImpl implements com.itexus.dao.BookDao {
     private final String FILE_CSV_NAME = "src/main/resources/library.csv";
-    CsvMapper csvMapper= new CsvMapper();
+    CsvMapper csvMapper = new CsvMapper();
+
     @Override
     public void addBook(Book book) throws DaoException {
 
@@ -107,4 +108,5 @@ public class BookDaoImpl implements com.itexus.dao.BookDao {
         }
         return books;
     }
+
 }

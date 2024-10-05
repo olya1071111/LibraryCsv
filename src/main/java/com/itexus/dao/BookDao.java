@@ -12,4 +12,5 @@ public interface BookDao {
     void deleteBookById(int id) throws DaoException;
 
     List<Book> listBooks() throws DaoException;
+
 }

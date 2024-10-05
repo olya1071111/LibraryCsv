@@ -31,6 +31,7 @@ public class BookControllerImpl implements BookController {
         System.out.println(rb.getString("choice3"));
         System.out.println(rb.getString("choice4"));
         System.out.println(rb.getString("choice5"));
+        System.out.println(rb.getString("choice6"));
         System.out.print(rb.getString("make_choice"));
     }
 
@@ -98,6 +99,18 @@ public class BookControllerImpl implements BookController {
                     System.out.println(rb.getString("up_book"));
                 } catch (LogicException e) {
                     System.out.println(rb.getString("err_up"));
+                }
+                System.out.println(delimiter);
+                continue;
+            }
+            if (nStr.equals("5")) {
+                System.out.print(rb.getString("title_find"));
+                try {
+                    String title = InputNumber.readLine();
+//                    bookLogic.findByName(title);
+                    System.out.println(bookLogic.findByName(title));
+                } catch (LogicException e) {
+                    System.out.println(rb.getString("err_find"));
                 }
                 System.out.println(delimiter);
                 continue;
