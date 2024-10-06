@@ -105,7 +105,7 @@ public class BookLogicImpl implements BookLogic {
             List<Book> books = bookDao.listBooks();
 
             return books.stream()
-                    .filter(p -> p.getTitle().equals(title))
+                    .filter(p -> p.getTitle().contains(title))
                     .findFirst()
                     .orElse(null);
 
