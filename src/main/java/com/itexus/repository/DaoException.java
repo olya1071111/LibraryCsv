@@ -1,4 +1,4 @@
-package com.itexus.dao;
+package com.itexus.repository;
 
 import java.io.Serial;
 

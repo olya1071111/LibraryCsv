@@ -10,7 +10,7 @@ create table genre
     genreName varchar(256) not null
 );
 
-create table book
+create table book2
 (
     id        int          not null primary key GENERATED ALWAYS AS IDENTITY,
     bookName  varchar(256) not null,
@@ -37,5 +37,5 @@ create table availabilityBook
     price   varchar(256) not null,
 
     CONSTRAINT FK_SHOP FOREIGN KEY (shop_id) REFERENCES shop (id),
-    CONSTRAINT FK_BOOK FOREIGN KEY (book_id) REFERENCES book (id)
+    CONSTRAINT FK_BOOK FOREIGN KEY (book_id) REFERENCES book2 (id)
 );

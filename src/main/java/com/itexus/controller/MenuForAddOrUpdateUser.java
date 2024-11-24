@@ -1,6 +1,8 @@
 package com.itexus.controller;
 
+import com.itexus.model.Author;
 import com.itexus.model.Book;
+import com.itexus.model.Genre;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -53,19 +55,29 @@ public class MenuForAddOrUpdateUser {
             Pattern pattern = Pattern.compile("[A-ZА-Я][a-zа-я]+");
             Matcher matcher = pattern.matcher(nameOfAuthor);
             if (matcher.matches()) {
-                book.setAuthor(nameOfAuthor);
+                Author author = new Author(nameOfAuthor);
+                book.setAuthor(author);
                 isCorrectNameOfAuthor = true;
             } else {
                 System.out.println(rb.getString("err_author"));
             }
         }
 
-        System.out.print(rb.getString("description"));
+        System.out.print(rb.getString("genre"));
         try {
-            book.setDescription(numIn.readLine());
+            Genre genre = new Genre(numIn.readLine());
+            book.setGenre(genre);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.print(rb.getString("year"));
+        try {
+            book.setYear(Integer.parseInt(numIn.readLine()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         return book;
     }
 }
