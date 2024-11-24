@@ -7,9 +7,6 @@ public class Genre {
     private int id;
     private String genreName;
 
-    public Genre() {
-    }
-
     public Genre(String genreName) {
         this.genreName = genreName;
     }

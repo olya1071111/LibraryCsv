@@ -13,13 +13,6 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, int year, Author author, Genre genre) {
-        this.title = title;
-        this.year = year;
-        this.author = author;
-        this.genre = genre;
-    }
-
     public Book(int id, String title, int year, Author author, Genre genre) {
         this.id = id;
         this.title = title;
